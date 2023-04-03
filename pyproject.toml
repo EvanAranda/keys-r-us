@@ -24,11 +24,13 @@ classifiers = [
     "Programming Language :: Python :: Implementation :: PyPy",
 ]
 dependencies = [
-    "textual[dev]",
     "mnemonic",
     "shamir-mnemonic",
     "base58",
-    "di-ioc"
+    "click",
+    "qrcode",
+    "pyzbar",
+    "pillow"
 ]
 dynamic = ["version"]
 
@@ -36,6 +38,9 @@ dynamic = ["version"]
 Documentation = "https://github.com/unknown/keys-r-us#readme"
 Issues = "https://github.com/unknown/keys-r-us/issues"
 Source = "https://github.com/unknown/keys-r-us"
+
+[project.scripts]
+keys-r-us = "keys_r_us.cli:entry"
 
 [tool.hatch.version]
 path = "keys_r_us/__about__.py"

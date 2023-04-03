@@ -25,20 +25,6 @@ From the project directory:
 hatch env create
 ```
 
-### Run the App
-
-From the project directory:
-
-```console
-python keys_r_us/scripts/run_app.py
-```
-
-OR, for devtools support
-
-```console
-textual run --dev keys_r_us/scripts/run_dev.py
-```
-
 ## License
 
 `keys-r-us` is distributed under the terms of the [MIT](https://spdx.org/licenses/MIT.html) license.

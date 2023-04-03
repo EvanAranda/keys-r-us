@@ -1,3 +1,5 @@
 .hatch
+.pytest_cache
+.coverage
 dist
 *.egg-info
