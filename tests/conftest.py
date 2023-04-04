@@ -1,5 +1,3 @@
-import typing as t
-
 import click
 import pytest
 from click.testing import CliRunner as _CliRunner
@@ -10,7 +8,7 @@ class CliRunner(_CliRunner):
         super().__init__()
         self.command = command
 
-    def __call__(self, *args, stdin: str | bytes | t.IO | None = None, **kwargs):
+    def __call__(self, *args, stdin=None, **kwargs):
         kwargs.setdefault('catch_exceptions', False)
         return self.invoke(self.command, args, stdin, **kwargs)
 

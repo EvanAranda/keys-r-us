@@ -27,13 +27,13 @@ def get_opts(encoding: t.Type[SecretEncoder], opts: dict) -> dict:
     }
 
 
-def encode(secret: bytes, encoding: str | SecretEncoder, **opts) -> str:
+def encode(secret: bytes, encoding: t.Union[str, SecretEncoder], **opts) -> str:
     if isinstance(encoding, str):
         encoding = get_encoding(encoding)
     return encoding.encode(secret, **get_opts(encoding, opts))
 
 
-def decode(encoded: str, encoding: str | SecretEncoder, **opts) -> bytes:
+def decode(encoded: str, encoding: t.Union[str, SecretEncoder], **opts) -> bytes:
     if isinstance(encoding, str):
         encoding = get_encoding(encoding)
     return encoding.decode(encoded, **get_opts(encoding, opts))

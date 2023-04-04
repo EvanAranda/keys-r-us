@@ -1,3 +1,5 @@
+import typing as t
+
 import click
 import mnemonic as bip
 
@@ -15,7 +17,7 @@ from keys_r_us.cli import util
 @click.option('-f', '--format', default='hex')
 @click.pass_context
 def derive(ctx: click.Context,
-           words: str | None,
+           words: t.Optional[str],
            lang: str,
            passphrase: str,
            format: str):

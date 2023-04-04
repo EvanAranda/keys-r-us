@@ -46,18 +46,17 @@ keys-r-us = "keys_r_us.cli:entry"
 path = "keys_r_us/__about__.py"
 
 [tool.hatch.envs.default]
-path = ".hatch"
-python = "python3.11"
 dependencies = [
     "pytest",
     "pytest-cov",
 ]
 [tool.hatch.envs.default.scripts]
+version = "python --version"
 cov = "pytest --cov-report=term-missing --cov-config=pyproject.toml --cov=keys_r_us --cov=tests {args}"
 no-cov = "cov --no-cov {args}"
 
 [[tool.hatch.envs.test.matrix]]
-python = ["37", "38", "39", "310", "311"]
+python = ["3.9", "3.10", "3.11"]
 
 [tool.coverage.run]
 branch = true

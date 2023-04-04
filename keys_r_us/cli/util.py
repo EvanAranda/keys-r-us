@@ -3,7 +3,8 @@ import typing as t
 from keys_r_us import encoding
 
 
-def parse_format_options(enc: str | encoding.SecretEncoder, extra_args: t.Sequence[str]) -> t.Dict[str, t.Any]:
+def parse_format_options(enc: t.Union[str, encoding.SecretEncoder],
+                         extra_args: t.Sequence[str]) -> t.Dict[str, t.Any]:
     """
     Parse the format options from the command line arguments.
     """

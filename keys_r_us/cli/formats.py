@@ -1,3 +1,5 @@
+import typing as t
+
 import click
 
 from keys_r_us import encoding
@@ -6,7 +8,7 @@ from keys_r_us import encoding
 @click.command()
 @click.argument('name', required=False)
 @click.option('-s', '--short', is_flag=True, default=False)
-def formats(name: str | None, short: bool):
+def formats(name: t.Optional[str], short: bool):
     """
     Display all the output formats and their configuration.
     """
