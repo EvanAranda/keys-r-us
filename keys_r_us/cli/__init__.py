@@ -8,14 +8,14 @@ from keys_r_us.cli.transcode import transcode
 
 
 @click.group()
-def entry():
+def main():
     """
     keys-r-us
     """
 
 
-entry.add_command(formats)
-entry.add_command(transcode)
-entry.add_command(bip39)
-entry.add_command(bip32)
-entry.add_command(slip39)
+main.add_command(formats)
+main.add_command(transcode)
+main.add_command(bip39)
+main.add_command(bip32)
+main.add_command(slip39)

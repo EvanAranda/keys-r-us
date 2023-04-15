@@ -5,6 +5,8 @@ from pathlib import Path
 import PIL.Image
 import qrcode
 from pyzbar import pyzbar
+from qrcode.image.styledpil import StyledPilImage
+from qrcode.image.styles.moduledrawers import RoundedModuleDrawer, SquareModuleDrawer
 
 from .interface import SecretEncoder, Option
 
@@ -18,7 +20,8 @@ class QRSecretEncoder(SecretEncoder):
     desc = 'QR Code Encoding.'
     options = dict(
         size=Option('Pixels per block of the qr code.', 10, int),
-        filename=Option('File to write the qr code to.', Path('./share.png'), Path)
+        filename=Option('File to write the qr code to.', Path('./share.png'), Path),
+        style=Option('Style of the qr code modules (square, rounded).', 'square', str),
     )
 
     @classmethod
@@ -29,9 +32,22 @@ class QRSecretEncoder(SecretEncoder):
             raise ValueError(f'invalid image format: {img_format}')
         img_format = img_format.lstrip('.')
 
-        img = qrcode.make(
-            base64.b64encode(secret),
+        match opts['style']:
+            case 'square':
+                img_factory = StyledPilImage
+                module_drawer = SquareModuleDrawer()
+            case 'rounded':
+                img_factory = StyledPilImage
+                module_drawer = RoundedModuleDrawer()
+            case _:
+                raise ValueError(f'invalid qr code style: {opts["style"]}')
+
+        qr = qrcode.QRCode(
             box_size=opts['size'])
+        qr.add_data(base64.b64encode(secret))
+        img = qr.make_image(
+            image_factory=img_factory,
+            module_drawer=module_drawer)
         img.save(output_location, kind=img_format)
         return str(output_location)
 

@@ -16,4 +16,4 @@ class CliRunner(_CliRunner):
 @pytest.fixture(scope='session')
 def keys_r_us_cli() -> CliRunner:
     from keys_r_us import cli
-    return CliRunner(cli.entry)
+    return CliRunner(cli.main)
